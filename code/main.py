@@ -11,7 +11,7 @@ def main():
     # # Loading input values
     # print("::debug::Loading input values")
     template_file = os.environ.get("INPUT_ARMTEMPLATE_FILE", default="arm_deploy.json")
-    template_params_file = os.environ.get("INPUT_ARMTEMPLATEPARAMS_FILE", default="arm_deploy.params.json")
+    template_params_file = os.environ.get("INPUT_ARMTEMPLATEPARAMS_FILE", default="")
     azure_credentials = os.environ.get("INPUT_AZURE_CREDENTIALS", default="{}")
     resource_group = os.environ.get("INPUT_RESOURCE_GROUP", default=None)
     mapped_params = os.environ.get("INPUT_MAPPED_PARAMS", default="{}")
@@ -50,8 +50,7 @@ def main():
     # # Loading parameters file
     # print("::debug::Loading parameters file")
     template_file_file_path = os.path.join(".cloud", ".azure", template_file)
-    template_params_file_path = os.path.join(".cloud", ".azure", template_params_file)
-
+    
     # Mask values
     print("::debug::Masking parameters")
     mask_parameter(parameter=azure_credentials.get("tenantId", ""))
@@ -65,7 +64,7 @@ def main():
     service_principal_password=azure_credentials.get("clientSecret", "")
     subscriptionId=azure_credentials.get("subscriptionId", "")
     
-    parameters=get_template_parameters(template_params_file_path,mapped_params)
+    parameters=get_template_parameters(template_params_file,mapped_params)
     credentials=None
     try:
         credentials = ServicePrincipalCredentials(
