@@ -19,7 +19,7 @@ def main():
     dmode=None
     if deployment_mode == "Incremental":
         dmode=Deployment.Incremental
-     else:
+    else:
         dmode=Deployment.Complete
     print(dmode)
     print("reached------------------------------------------------------------------------")
