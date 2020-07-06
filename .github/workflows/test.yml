@@ -18,5 +18,6 @@ jobs:
       with:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
           armtemplate_file: "deploy.json"
-          resource_group: "checking3"
+          resource_group: "checking4"
           deployment_mode: "Incremental"
+          mapped_params: '{"workspaceName":"testingWork01"}'
