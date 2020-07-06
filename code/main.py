@@ -83,6 +83,9 @@ def main():
             'parameters': parameters
         }
      }
+    print("parameters------------")
+    print(parameters)
+    print(len(parameters))
     try:
         validate=client.deployments.validate(resource_group,"azure-sample",deployment_properties)
         validate.wait()
