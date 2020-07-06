@@ -11,8 +11,8 @@ inputs:
     default: "deploy.json"
   armtemplateparams_file:
     description: "JSON file of am template to params deploy."
-    required: true
-    default: "deploy.params.json"
+    required: false
+    default: ""
   resource_group:
     description: "resource group which is to be used"
     required: true
