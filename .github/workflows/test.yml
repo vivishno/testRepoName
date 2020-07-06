@@ -10,7 +10,7 @@ jobs:
     - name: Check Out Repository
       id: checkout_repository
       uses: actions/checkout@v2
-        
+         
     # Connect or Create the Azure Machine Learning Workspace
     - name: deploy all resources
       id: aml_configure
