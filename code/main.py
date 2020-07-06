@@ -79,12 +79,12 @@ def main():
     deployment_properties = {
         'properties':{
             'mode': DeploymentMode.incremental,
-            'template': template,
-            'parameters': parameters
+            'template': "hello",
+            'parameters': "bye"
         }
      }
     print("parameters------------")
-    print(parameters)
+    print(deployment_properties)
     print(len(parameters))
     try:
         validate=client.deployments.validate(resource_group,"azure-sample",deployment_properties)
