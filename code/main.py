@@ -18,9 +18,9 @@ def main():
     deployment_mode=os.environ.get("INPUT_DEPLOYMENT_MODE", default="INCREMENTAL")
     dmode=None
     if deployment_mode == "Incremental":
-        dmode=Deployment.Incremental
+        dmode=DeploymentMode.Incremental
     else:
-        dmode=Deployment.Complete
+        dmode=DeploymentMode.Complete
     print(dmode)
     print("reached------------------------------------------------------------------------")
     print(deployment_mode)
