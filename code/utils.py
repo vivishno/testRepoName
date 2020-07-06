@@ -20,12 +20,15 @@ class TemplateParameterException(Exception):
     pass
 
 
-def get_template_parameters(template_params_file_path,mapped_params):
-    parameters=None
+def get_template_parameters(template_params_file,mapped_params):
+    parameters={}
     try:
-        with open(template_params_file_path,"r") as f:
-            jsonobject = json.load(f);
-        parameters=jsonobject["parameters"]
+        if len(template_params_file)!=0:
+            template_params_file_path = os.path.join(".cloud", ".azure", template_params_file)
+            with open(template_params_file_path,"r") as f:
+                jsonobject = json.load(f);
+            parameters=jsonobject["parameters"]
+            
         for k in mapped_params:
             parameters[k]={}
             parameters[k]["value"] = mapped_params[k]
