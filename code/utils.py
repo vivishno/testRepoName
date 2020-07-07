@@ -3,6 +3,7 @@ import sys
 import importlib
 import json
 from json import JSONDecodeError
+from azure.mgmt.resource.resources.models import DeploymentMode
 
 class ActionDeploymentError(Exception):
     pass
