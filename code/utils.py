@@ -44,7 +44,7 @@ def get_template_parameters(template_params_file,mapped_params):
 def get_deploy_mode_obj(deployment_mode):
     if deployment_mode=="Incremental":
         return repr(DeploymentMode.incremental)
-    else if deployment_mode=="Complete":
+    elif deployment_mode=="Complete":
         return repr(DeploymentMode.complete)
     else:
         raise InvalidDeploymentModeException(f"Please provide deployment mode as \"Incremental\" or \"Complete\" only.)
