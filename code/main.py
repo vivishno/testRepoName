@@ -15,9 +15,9 @@ def main():
     azure_credentials = os.environ.get("INPUT_AZURE_CREDENTIALS", default="{}")
     resource_group = os.environ.get("INPUT_RESOURCE_GROUP", default=None)
     mapped_params = os.environ.get("INPUT_MAPPED_PARAMS", default="{}")
-    deployment_mode=os.environ.get("INPUT_DEPLOYMENT_MODE", default="INCREMENTAL")
+    deployment_mode=os.environ.get("INPUT_DEPLOYMENT_MODE", default="Incremental")
+    
     deploy_enum=get_deploy_mode_obj(deployment_mode)
-    print(deploy_enum)
     try:
         azure_credentials = json.loads(azure_credentials)
     except JSONDecodeError:
@@ -85,10 +85,7 @@ def main():
             'parameters': parameters
         }
      }
-    print("parameters------------")
-    print(deployment_properties)
-    print(len(parameters))
-    print(parameters)
+
     try:
         validate=client.deployments.validate(resource_group,"azure-sample",deployment_properties)
         validate.wait()
