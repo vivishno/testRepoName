@@ -18,5 +18,7 @@ jobs:
       with:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
           armtemplate_file: "deploy.json"
-          resource_group: "checking5"
-          deployment_mode: "Complete"
+          armtemplateparams_file: "deploy.params.json"
+          resource_group: "ashkuma_functionAppRsGroup"
+          mapped_params: '{"patToken":"${{secrets.PAT_TOKEN}}"}'
+          deployment_mode: "Incremental"
