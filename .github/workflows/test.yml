@@ -19,4 +19,4 @@ jobs:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
           armtemplate_file: "deploy.json"
           resource_group: "checking5"
-          deployment_mode: "Incremental"
+          deployment_mode: "Complete"
