@@ -19,6 +19,8 @@ class CredentialsVerificationError(Exception):
 class TemplateParameterException(Exception):
     pass
 
+class InvalidDeploymentModeException(Exception):
+    pass
 
 def get_template_parameters(template_params_file,mapped_params):
     parameters={}
@@ -38,6 +40,15 @@ def get_template_parameters(template_params_file,mapped_params):
         raise TemplateParameterException(f"Incorrect or poorly formed template parameters")
         
     return parameters
+
+def get_deploy_mode_obj(deployment_mode):
+    if deployment_mode=="Incremental":
+        return repr(DeploymentMode.incremental)
+    else if deployment_mode=="Complete":
+        return repr(DeploymentMode.complete)
+    else:
+        raise InvalidDeploymentModeException(f"Please provide deployment mode as \"Incremental\" or \"Complete\" only.)
+
 
 def required_parameters_provided(parameters, keys, message="Required parameter not found in your parameters file. Please provide a value for the following key(s): "):
     missing_keys = []
