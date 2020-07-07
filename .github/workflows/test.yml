@@ -19,4 +19,4 @@ jobs:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
           armtemplate_file: "deploy.json"
           resource_group: "checking4"
-          deployment_mode: "KuchBhi"
+          deployment_mode: "Incremental"
