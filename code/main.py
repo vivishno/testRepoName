@@ -16,6 +16,8 @@ def main():
     resource_group = os.environ.get("INPUT_RESOURCE_GROUP", default=None)
     mapped_params = os.environ.get("INPUT_MAPPED_PARAMS", default="{}")
     deployment_mode=os.environ.get("INPUT_DEPLOYMENT_MODE", default="INCREMENTAL")
+    deployM=get_deploy_mode_obj(deployment_mode)
+    print(deployM)
     try:
         azure_credentials = json.loads(azure_credentials)
     except JSONDecodeError:
@@ -78,7 +80,7 @@ def main():
         
     deployment_properties = {
         'properties':{
-            'mode': DeploymentMode.incremental,
+            'mode': deployM,
             'template': "hello",
             'parameters': "bye"
         }
