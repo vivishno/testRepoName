@@ -47,7 +47,7 @@ def get_deploy_mode_obj(deployment_mode):
     elif deployment_mode=="Complete":
         return repr(DeploymentMode.complete)
     else:
-        raise InvalidDeploymentModeException(f"Please provide deployment mode as \"Incremental\" or \"Complete\" only.)
+        raise InvalidDeploymentModeException(f"Please provide deployment mode as \"Incremental\" or \"Complete\" only.")
 
 
 def required_parameters_provided(parameters, keys, message="Required parameter not found in your parameters file. Please provide a value for the following key(s): "):
