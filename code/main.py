@@ -101,7 +101,7 @@ def main():
         deployment_async_operation.wait()
     except Exception as ex:
         raise ActionDeploymentError(ex)
-    print(deployment_async_operation.result())
+    print(deployment_async_operation.result()) 
     print("Deployment done")
     deploy_result=deployment_async_operation.result()
     print(f"::set-output name=deployment_parameters::{deploy_result.properties.parameters}")
