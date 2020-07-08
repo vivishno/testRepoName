@@ -90,7 +90,8 @@ def main():
         validate=client.deployments.validate(resource_group,"azure-sample",deployment_properties)
         validate.wait()
     except Exception as ex:
-        raise ActionDeploymentError(ex)    
+        raise ActionDeploymentError(ex)
+    deployment_async_operation=None    
     try:
         deployment_async_operation = client.deployments.create_or_update(
                 resource_group,
@@ -100,7 +101,12 @@ def main():
         deployment_async_operation.wait()
     except Exception as ex:
         raise ActionDeploymentError(ex)
+    print(deployment_async_operation.result())
     print("Deployment done")
+    deploy_result=deployment_async_operation.result()
+    print(f"::set-output name=deployment_parameters::{deploy_result.properties.parameters}")
+    print(f"::set-output name=deployment_output::{deploy_result.properties.outputs}")
+    print("Main fnction completed-----------------------------------------------------------------------------------------------------------------------")
 
 if __name__ == "__main__":
     main()
