@@ -11,8 +11,8 @@ inputs:
     default: "deploy.json"
   armtemplateparams_file:
     description: "JSON file of am template to params deploy."
-    required: true
-    default: "deploy.params.json"
+    required: false
+    default: ""
   resource_group:
     description: "resource group which is to be used"
     required: true
@@ -21,6 +21,10 @@ inputs:
     description: "mapped parameters to be added during runtime"
     required: false
     default: "{}"
+  deployment_mode:
+    description: "Deployment mode used to deploy arm template"
+    required: true
+    default: "Incremental"
 outputs:
   experiment_name:
     description: "Name of the experiment of the run"
