@@ -20,3 +20,10 @@ jobs:
           armtemplate_file: "deploy.json"
           resource_group: "checking6"
           deployment_mode: "Incremental"
+          
+
+    - name: testResources
+      id: testOutput
+      run: |
+        echo  ${{ steps.aml_configure.outputs.deployment_parameters}}
+        echo  ${{ steps.aml_configure.outputs.deployment_output}}
