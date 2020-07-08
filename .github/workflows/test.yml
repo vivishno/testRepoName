@@ -22,4 +22,3 @@ jobs:
           resource_group: "ashkuma_functionAppRsGroup"
           mapped_params: '{"patToken":"${{secrets.PAT_TOKEN}}"}'
           deployment_mode: "Incremental"
-
