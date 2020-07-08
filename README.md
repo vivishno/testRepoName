@@ -1,4 +1,4 @@
-# GitHub Action for deploying ARM templates for Azure
+# GitHub Action for deploying ARM template to Azure
 
 ## Usage
 
@@ -7,7 +7,7 @@ The AML Configure action deploys your azure resources using [Azure Resource Mana
 
 Get started today with a [free Azure account](https://azure.com/free/open-source)!
 
-This repository contains GitHub Action for deploying ARM templates
+This repository contains GitHub Action for deploying any ARM template
 
 ## Dependencies on other GitHub Actions
 * [Checkout](https://github.com/actions/checkout) Checkout your Git repository content into GitHub Actions agent.
@@ -16,7 +16,7 @@ This repository contains GitHub Action for deploying ARM templates
 
 ## Use of this GitHub Actions
 
-Using this action user will be able to deploy resources to azure by providing the ARM templates and an ARM templates paramter file.
+Using this action user will be able to deploy resources to azure by providing the ARM templates and an ARM templates paramter file(optional).
 
 
 ### Example workflow
@@ -45,6 +45,8 @@ jobs:
           armtemplateparams_file: "deploy.params.json"
           resource_group: "ashkuma_functionAppRsGroup"
           mapped_params: '{"patToken":"${{secrets.PAT_TOKEN}}"}'
+          deployment_mode: "Incremental"
+         
 
 ```
 
@@ -54,9 +56,10 @@ jobs:
 | ----- | -------- | ------- | ----------- |
 | azure_credentials | x | - | Output of `az ad sp create-for-rbac --name <your-sp-name> --role contributor --scopes /subscriptions/<your-subscriptionId>/resourceGroups/<your-rg> --sdk-auth`. This should be stored in your secrets |
 | armtemplate_file | "deploy.json" | - | We expect a JSON file in the `.cloud/.azure` folder in root of your repository specifying your model deployment details. If you have want to provide these details in a file other than "deploy.json" you need to provide this input in the action. |
-| armtemplateparams_file | | deploy.params.json | - | We expect a JSON file in the `.cloud/.azure` folder in root of your repository specifying the parameters used by arm template file for deployment.The parameters can be configured by user accordingly. |
+| armtemplateparams_file | x | - |  We expect a JSON file in the `.cloud/.azure` folder in root of your repository specifying the parameters used by arm template file for deployment.The parameters field is optional.If not provided deployment will be done using arm template file only. |
 | resource_group |  | x | User needs to specify the azure resource group where the deployment of resources needs to be done.|
 | mapped_params |  | x | In some cases user can not write the secrets in the parameters file, which might be getting used in the template, we prvide support to enter mapped parameters which will be injected into the parameters during deployment time, so your template will have access to them and you don't need to provide them inside parameters file. |
+| deployment_mode | x | - | Output of `az ad sp create-for-rbac --name <your-sp-name> --role contributor --scopes /subscriptions/<your-subscriptionId>/resourceGroups/<your-rg> --sdk-auth`. This should be stored in your secrets |
 
 
 #### azure_credentials ( Azure Credentials ) 
