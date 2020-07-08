@@ -29,7 +29,7 @@ outputs:
   deployment_output:
     description: "Output of the deployment as specified in output section of arm template file"
   deployment_parameters:
-    description: "Parameter used in the deployment"
+    description: "Parameters used in the deployment"
 branding:
   icon: "chevron-up"
   color: "blue"
