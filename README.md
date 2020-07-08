@@ -54,12 +54,12 @@ jobs:
 
 | Input | Required | Default | Description |
 | ----- | -------- | ------- | ----------- |
-| azure_credentials | x | - | Output of `az ad sp create-for-rbac --name <your-sp-name> --role contributor --scopes /subscriptions/<your-subscriptionId>/resourceGroups/<your-rg> --sdk-auth`. This should be stored in your secrets |
-| armtemplate_file | "deploy.json" | - | We expect a JSON file in the `.cloud/.azure` folder in root of your repository specifying your model deployment details. If you have want to provide these details in a file other than "deploy.json" you need to provide this input in the action. |
-| armtemplateparams_file | x | - |  We expect a JSON file in the `.cloud/.azure` folder in root of your repository specifying the parameters used by arm template file for deployment.The parameters field is optional.If not provided deployment will be done using arm template file only. |
-| resource_group |  | x | User needs to specify the azure resource group where the deployment of resources needs to be done.|
-| mapped_params |  | x | In some cases user can not write the secrets in the parameters file, which might be getting used in the template, we prvide support to enter mapped parameters which will be injected into the parameters during deployment time, so your template will have access to them and you don't need to provide them inside parameters file. |
-| deployment_mode | x | - | Output of `az ad sp create-for-rbac --name <your-sp-name> --role contributor --scopes /subscriptions/<your-subscriptionId>/resourceGroups/<your-rg> --sdk-auth`. This should be stored in your secrets |
+| azure_credentials | yes | - | Output of `az ad sp create-for-rbac --name <your-sp-name> --role contributor --scopes /subscriptions/<your-subscriptionId>/resourceGroups/<your-rg> --sdk-auth`. This should be stored in your secrets |
+| armtemplate_file | yes | "deploy.json" | We expect a JSON file in the `.cloud/.azure` folder in root of your repository specifying your model deployment details. If you have want to provide these details in a file other than "deploy.json" you need to provide this input in the action. |
+| armtemplateparams_file | no | - |  We expect a JSON file in the `.cloud/.azure` folder in root of your repository specifying the parameters used by arm template file for deployment.The parameters field is optional.If not provided deployment will be done using arm template file only. |
+| resource_group | yes | - | User needs to specify the azure resource group where the deployment of resources needs to be done.|
+| mapped_params | no | - | In some cases user can not write the secrets in the parameters file, which might be getting used in the template, we prvide support to enter mapped parameters which will be injected into the parameters during deployment time, so your template will have access to them and you don't need to provide them inside parameters file. |
+| deployment_mode | yes | "Incremental" | Deployment mode can be either "Incremental"  or "Complete". See [DeploymentModes](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes) for details |
 
 
 #### azure_credentials ( Azure Credentials ) 
@@ -93,7 +93,7 @@ Add this JSON output as [a secret](https://help.github.com/en/actions/configurin
 
 #### parameters_file (Parameters File)
 
-The action tries to load a JSON file in the `.cloud/.azure` folder in your repository, which specifies details for the model deployment to your Azure Machine Learning Workspace. By default, the action expects a file with the name `arm_deploy.json`. If your JSON file has a different name, you can specify it with this parameter. Note that none of these values are required and, in the absence, default sample file will be used.
+The action tries to load a JSON file in the `.cloud/.azure` folder in your repository, which specifies details for the model deployment to your Azure Machine Learning Workspace. By default, the action expects a file with the name `arm_deploy.json`. If your JSON file has a different name, you can specify it with this parameter. Note that none of these values are required and, in the absence deployment will be done using arm template file alone.
 
 A sample file can be found in this repository in the folder `.cloud/.azure`. The parameters file parameters are configurable and can be changed by user accordingly.
 
