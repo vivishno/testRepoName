@@ -101,7 +101,7 @@ def main():
                 resource_group,
                 repo_name,
                 deployment_properties
-            ).format(repo_name)
+            )
         deployment_async_operation.wait()
     except Exception as ex:
         raise ActionDeploymentError(ex)
