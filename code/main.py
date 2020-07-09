@@ -16,7 +16,8 @@ def main():
     resource_group = os.environ.get("INPUT_RESOURCE_GROUP", default=None)
     mapped_params = os.environ.get("INPUT_MAPPED_PARAMS", default="{}")
     deployment_mode=os.environ.get("INPUT_DEPLOYMENT_MODE", default="Incremental")
-    
+    repo_name=os.environ.get("GITHUB_REPOSITORY")
+    print(repo_name)
     deploy_enum=get_deploy_mode_obj(deployment_mode)
     try:
         azure_credentials = json.loads(azure_credentials)
