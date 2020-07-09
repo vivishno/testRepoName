@@ -88,7 +88,7 @@ def main():
      }
 
     try:
-        validate=client.deployments.validate(resource_group,"azure-sample",deployment_properties)
+        validate=client.deployments.validate(resource_group,repo_name,deployment_properties)
         validate.wait()
     except Exception as ex:
         raise ActionDeploymentError(ex)
@@ -96,7 +96,7 @@ def main():
     try:
         deployment_async_operation = client.deployments.create_or_update(
                 resource_group,
-                'azure-sample',
+                repo_name,
                 deployment_properties
             )
         deployment_async_operation.wait()
