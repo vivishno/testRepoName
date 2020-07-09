@@ -19,7 +19,7 @@ def main():
     
     repo_name=os.environ.get("GITHUB_REPOSITORY")
     print(repo_name)
-    repo_name.split('/')
+    repo_name=repo_name.split('/')
     print(repo_name)
     repo_name=repo_name[0]+'_'+repo_name[1]
     print(repo_name)
