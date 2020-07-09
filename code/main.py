@@ -88,7 +88,7 @@ def main():
      }
 
     try:
-        validate=client.deployments.validate(resource_group,repo_name,deployment_properties)
+        validate=client.deployments.validate(resource_group,\"{}\",deployment_properties).format(repo_name)
         validate.wait()
     except Exception as ex:
         raise ActionDeploymentError(ex)
@@ -96,9 +96,9 @@ def main():
     try:
         deployment_async_operation = client.deployments.create_or_update(
                 resource_group,
-                repo_name,
+                \"{}\",
                 deployment_properties
-            )
+            ).format(repo_name)
         deployment_async_operation.wait()
     except Exception as ex:
         raise ActionDeploymentError(ex)
